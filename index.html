@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabinet Scan — scan it, and it files itself</title>
+<meta name="description" content="An iPhone document scanner that names, summarizes and files your paperwork by itself — then builds a private, on-device picture of your life: what you're paying, what renews, what needs you this week, and answers to questions about your own files. Local-first. No account.">
+<meta name="theme-color" content="#3f57c9">
+<meta property="og:title" content="Cabinet Scan">
+<meta property="og:description" content="Scan it, and it files itself. A local-first document scanner that names, summarizes, files and remembers your paperwork.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/icon.png">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  /* Enable the hidden-until-revealed states before first paint (no flash),
+     but never when the visitor prefers reduced motion. */
+  try {
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("reveal-on", "anim-ready");
+    }
+  } catch (e) {}
+</script>
+<noscript><style>
+  [data-reveal], [data-anim] { opacity: 1 !important; transform: none !important; }
+  .mock-graph .node { opacity: 1 !important; transform: none !important; }
+</style></noscript>
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#top">
+    <img src="assets/icon.png" alt="" width="30" height="30">
+    <span>Cabinet&nbsp;Scan</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#capture">Capture</a>
+    <a href="#lifegraph">LifeGraph</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#ask">Ask</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <img class="hero-icon" data-anim="1" src="assets/icon.png" alt="Cabinet Scan app icon" width="92" height="92">
+        <h1 data-anim="2">Scan it.<br><span class="grad">It files itself.</span></h1>
+        <p class="lede" data-anim="3">
+          Point your iPhone at a letter, an invoice, a contract. Cabinet Scan
+          reads it, gives it a real name, writes a short summary, and files it
+          under <strong>Area&nbsp;/&nbsp;Subject</strong> — then quietly builds a
+          private picture of your life you can ask questions about, and tells you
+          what needs you this week.
+        </p>
+        <div class="cta-row" data-anim="4">
+          <a class="btn btn-primary" href="https://apps.apple.com/app/id6806212898">Get it on the App&nbsp;Store</a>
+          <a class="btn btn-ghost" href="#capture">See how it works <span class="arr">→</span></a>
+        </div>
+        <p class="fineprint" data-anim="5">iPhone with a camera · iOS&nbsp;17 or later · free on the App&nbsp;Store</p>
+      </div>
+
+      <div class="hero-visual" data-anim="3" aria-hidden="true">
+        <div class="hero-ghosts"><i></i><i></i><i></i></div>
+        <div class="phone" id="heroPhone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="scan-beam"></div>
+            <div class="ph-icon"></div>
+            <div class="ph-title">Cabinet Scan</div>
+            <button class="ph-primary">Scan Document</button>
+            <div class="ph-grid">
+              <span>Import PDF</span><span>Photo Notes</span>
+              <span>Write Note</span><span class="hot">Ask</span>
+            </div>
+            <div class="ph-tabs">
+              <span>To&#8209;Do</span><span>Dashboard</span><span>Cabinet</span><span>LifeGraph</span><span>Settings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats" data-reveal>
+    <div class="stat"><b data-count="17">0</b><span>domain experts</span></div>
+    <div class="stat"><b data-count="0">0</b><span>accounts or sign-ins</span></div>
+    <div class="stat"><b data-count="1">0</b><span>tap to file a scan</span></div>
+    <div class="stat"><b class="inf">∞</b><span>document languages</span></div>
+  </section>
+
+  <!-- One-liner strip -->
+  <section class="strip" data-reveal>
+    <p>Your documents, your history and your whole life picture stay on your
+    iPhone. Turn on AI&nbsp;analysis and only the <em>text</em> of one document
+    at a time reaches a service that keeps no account and no memory of it.</p>
+  </section>
+
+  <!-- Life areas marquee -->
+  <section class="marquee-wrap" aria-hidden="true">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Finance</span><span>Insurance</span><span>Tax</span><span>Housing</span><span>Mobility</span><span>Health</span><span>Legal</span><span>Employment</span><span>Family</span><span>Government</span><span>Education</span><span>Travel</span><span>Identity</span><span>Business</span><span>Digital</span><span>Shopping</span>
+        <span>Finance</span><span>Insurance</span><span>Tax</span><span>Housing</span><span>Mobility</span><span>Health</span><span>Legal</span><span>Employment</span><span>Family</span><span>Government</span><span>Education</span><span>Travel</span><span>Identity</span><span>Business</span><span>Digital</span><span>Shopping</span>
+      </div>
+    </div>
+    <div class="marquee rev">
+      <div class="marquee-track">
+        <span>Renewals</span><span>Deadlines</span><span>Premiums</span><span>Policies</span><span>Vehicles</span><span>Loans</span><span>Subscriptions</span><span>Dependents</span><span>Obligations</span><span>Cases</span><span>Landlords</span><span>Accounts</span>
+        <span>Renewals</span><span>Deadlines</span><span>Premiums</span><span>Policies</span><span>Vehicles</span><span>Loans</span><span>Subscriptions</span><span>Dependents</span><span>Obligations</span><span>Cases</span><span>Landlords</span><span>Accounts</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capture -->
+  <section id="capture" class="feature">
+    <div class="feature-text" data-reveal>
+      <span class="eyebrow">Capture</span>
+      <h2>From paper to filed, in seconds</h2>
+      <p>
+        Multi-page scanning with edge detection and perspective correction.
+        On-device text recognition. A file name pulled from the document
+        itself — sender, type, date — and a plain-language summary of what it
+        actually says.
+      </p>
+      <ul class="ticks">
+        <li>Auto-filed into <strong>Area&nbsp;/&nbsp;Subject</strong> folders (Insurance&nbsp;/&nbsp;Allianz, Housing&nbsp;/&nbsp;Lindenstraße&nbsp;12 …), visible in the Files app</li>
+        <li>A deadline in the document becomes a <strong>to-do with a reminder</strong> — the very first scan is already useful</li>
+        <li><strong>Import a stack of PDFs at once</strong> and it names and files the whole batch unattended, then shows you a summary</li>
+        <li><strong>Search everything</strong> — names, summaries and the full recognised text of every document</li>
+        <li>Keep it in your app folder, or point it at a folder inside iCloud&nbsp;Drive or Google&nbsp;Drive to sync</li>
+        <li><strong>Write Note</strong> — type a quick note; it's filed like everything else and stays editable, in the app or in the Files app; <strong>Photo Notes</strong> — snap a whiteboard and get a structured transcription</li>
+      </ul>
+    </div>
+    <div class="feature-visual" data-reveal>
+      <div class="card glow mock-file">
+        <div class="mf-row"><span class="mf-k">Name</span><span class="mf-v">Rechnung Stadtwerke München Januar 2026</span></div>
+        <div class="mf-row"><span class="mf-k">Area</span><span class="mf-v"><span class="pill">Finance</span></span></div>
+        <div class="mf-row"><span class="mf-k">Filed</span><span class="mf-v">Finance / Stadtwerke München</span></div>
+        <hr>
+        <div class="mf-sum">
+          <p>• Electricity invoice for January 2026</p>
+          <p>• €84.50, due 28 Feb 2026 by direct debit</p>
+          <p>• Customer no. 4471209 · Invoice R-2026-0087</p>
+          <p class="mf-action">• Action required: keep the account funded for the debit</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LifeGraph -->
+  <section id="lifegraph" class="feature reverse">
+    <div class="feature-text" data-reveal>
+      <span class="eyebrow">Connect</span>
+      <h2>Every document, connected — the <span class="grad">LifeGraph</span></h2>
+      <p>
+        Each document is more than a PDF. Cabinet Scan pulls out the people,
+        organisations, accounts, policies, vehicles, obligations and dates it
+        mentions, and merges them into one personal knowledge graph. Two letters
+        about the same landlord become one landlord. A premium that changed
+        becomes a flagged change.
+      </p>
+      <p class="muted">
+        The graph is assembled and stored <strong>on your device</strong> and
+        never leaves it — the analysis service only ever sees one document at a
+        time and never the assembled whole. Explore it as a map, tap any node to
+        jump to the document behind it, and it opens focused on whatever your
+        most recent document changed.
+      </p>
+      <p class="muted">
+        A <strong>“Life picture” score</strong> shows how complete your records
+        are and names the few documents worth adding next — so it's obvious what
+        the app can do for you, and what it can't yet.
+      </p>
+    </div>
+    <div class="feature-visual" data-reveal>
+      <div class="card glow mock-graph">
+        <svg viewBox="0 0 440 300" role="img"
+             aria-label="A slice of a personal knowledge graph: you, connected to your home, employer, bank, car and an insurance policy whose premium changed.">
+          <defs>
+            <pattern id="gg-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.2" cy="1.2" r="1.2" class="gg-dot"/>
+            </pattern>
+          </defs>
+          <rect x="-20" y="-20" width="480" height="340" fill="url(#gg-dots)"/>
+
+          <g class="edges">
+            <path class="edge" d="M220,150 Q150,84 96,58"/>
+            <path class="edge" d="M96,58 Q70,92 78,126"/>
+            <path class="edge" d="M220,150 Q300,86 350,56"/>
+            <path class="edge" d="M350,56 Q392,78 392,112"/>
+            <path class="edge" d="M220,150 Q272,138 326,150"/>
+            <path class="edge" d="M326,150 Q380,178 398,216"/>
+            <path class="edge" d="M220,150 Q206,214 216,270"/>
+            <path class="edge" d="M220,150 Q132,212 72,246"/>
+          </g>
+
+          <g class="elabels">
+            <text class="elabel" x="148" y="90">lives at</text>
+            <text class="elabel" x="300" y="90">works for</text>
+            <text class="elabel" x="198" y="214">owns</text>
+            <text class="elabel" x="136" y="205">banks with</text>
+          </g>
+
+          <g class="nodes">
+            <g class="node n1"><rect x="50"  y="45"  width="92"  height="26" rx="9"/><text x="96"  y="59">Lindenstr. 12</text></g>
+            <g class="node n2"><rect x="45"  y="113" width="66"  height="26" rx="9"/><text x="78"  y="127">Vonovia</text></g>
+            <g class="node n3"><rect x="294" y="43"  width="112" height="26" rx="9"/><text x="350" y="57">TechCorp GmbH</text></g>
+            <g class="node n4"><rect x="354" y="99"  width="78"  height="26" rx="9"/><text x="393" y="113">Gehalt · Jan</text></g>
+            <g class="node n5"><rect x="366" y="203" width="66"  height="26" rx="9"/><text x="399" y="217">Allianz</text></g>
+            <g class="node n6"><rect x="180" y="257" width="76"  height="26" rx="9"/><text x="218" y="271">VW Golf</text></g>
+            <g class="node n7"><rect x="30"  y="233" width="86"  height="26" rx="9"/><text x="73"  y="247">Sparkasse</text></g>
+            <g class="node hot">
+              <rect class="pulse" x="266" y="132" width="120" height="36" rx="11"/>
+              <rect x="266" y="132" width="120" height="36" rx="11"/>
+              <text class="ttl" x="326" y="145">Hausrat HR&#8209;88245</text>
+              <text class="sub" x="326" y="158">€820 → €960</text>
+            </g>
+            <g class="node you"><circle cx="220" cy="150" r="34"/><text x="220" y="150">You</text></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard" class="feature">
+    <div class="feature-text" data-reveal>
+      <span class="eyebrow">Overview</span>
+      <h2>A dashboard for your actual life</h2>
+      <p>
+        One screen that reads the graph back to you: current home, employer,
+        vehicles, insurance policies, loans, subscriptions, dependents, open
+        cases — and a <strong>“This week”</strong> card that puts everything
+        dated in one place: to-dos, renewals, and the notice-period cut-offs
+        where you have to cancel <em>now</em> to avoid another year. One Monday
+        notification if you want it.
+      </p>
+      <p>
+        <strong>What you're paying</strong> adds up every recurring cost from
+        your contracts and policies. <strong>Key numbers</strong> keeps your
+        IBANs, policy and customer numbers one tap from copy. When a document
+        shows a life event — you moved, changed jobs, had a child — you get the
+        checklist of everything that now needs updating. And when two documents
+        disagree, it asks you which is right.
+      </p>
+      <p>
+        Under it all, a <strong>“What changed”</strong> feed: drop in a renewal
+        notice and it tells you plainly — <em>your home insurance premium went
+        from €820 to €960; renews 30&nbsp;November.</em> It reacts to your
+        paperwork instead of just storing it.
+      </p>
+      <p>
+        The home screen carries a short <strong>“For you”</strong> prompt — the
+        few things due, renewing or worth a second look — so the important ones
+        find you without opening anything.
+      </p>
+    </div>
+    <div class="feature-visual" data-reveal>
+      <div class="card glow mock-dash">
+        <div class="md-head">This week</div>
+        <div class="md-item md-material">
+          <span class="md-dot"><span class="ring"></span></span>
+          <div>
+            <div class="md-t">Nebenkosten-Nachzahlung €312.80</div>
+            <div class="md-d">overdue · Aug 31</div>
+          </div>
+        </div>
+        <div class="md-item">
+          <span class="md-dot sm"></span>
+          <div>
+            <div class="md-t">Cancel Kita contract (8-week notice)</div>
+            <div class="md-d">in 2 days</div>
+          </div>
+        </div>
+        <div class="md-item">
+          <span class="md-dot sm"></span>
+          <div>
+            <div class="md-t">Home insurance renews · €<span class="tick" data-to="960" data-from="820">820</span></div>
+            <div class="md-d">in 5 days · <span class="pill sm">Insurance</span></div>
+          </div>
+        </div>
+        <hr>
+        <div class="md-row"><span>Fixed monthly costs</span><b>€2,940</b></div>
+        <div class="md-row"><span>Later this month</span><b>2 more</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ask -->
+  <section id="ask" class="feature reverse">
+    <div class="feature-text" data-reveal>
+      <span class="eyebrow">Ask</span>
+      <h2>Ask your documents. <span class="grad">Or ask an expert.</span></h2>
+      <p>
+        Type a question — <em>“who is my landlord?”</em>, <em>“what's due this
+        month?”</em>, <em>“which documents mention Oakwood?”</em> — and get an
+        answer grounded in your own files, with tappable citations back to the
+        source.
+      </p>
+      <p>
+        Switch to one of <strong>17 domain experts</strong> — Tax, Housing,
+        Insurance, Legal, Health, Finance, Mobility and more. Each answers in the
+        context of <em>your</em> data, can search the web for current rules and
+        rates, and is scoped to <strong>your country</strong>, so the forms,
+        authorities and deadlines are the right ones. Turn any answer into a
+        dated to-do with one tap.
+      </p>
+    </div>
+    <div class="feature-visual" data-reveal>
+      <div class="card glow mock-chat">
+        <div class="bubble user">When does my home insurance renew, and did the price change?</div>
+        <div class="bubble bot">
+          Your Hausrat policy <b>HR-88245</b> renews on <b>30&nbsp;Nov&nbsp;2026</b>.
+          The premium rose from <b>€820</b> to <b>€960</b> this year.
+          <div class="cites"><span class="cite">📄 Hausratversicherung Allianz 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section id="privacy" class="privacy">
+    <div class="privacy-inner" data-reveal>
+      <span class="eyebrow">Privacy</span>
+      <h2>Your data stays on your device. Always.</h2>
+      <p class="muted" style="max-width:60ch">
+        Every scan, your history, your to-dos and your entire LifeGraph live in
+        the app's own storage on your iPhone — file-protected and left out of
+        device and iCloud backups. None of it is ever uploaded.
+      </p>
+    </div>
+    <div class="priv-grid">
+      <div class="priv" data-reveal>
+        <h3>Local-first by default</h3>
+        <p>Scanning, text recognition, naming, the key-facts card, filing and the whole LifeGraph run entirely on your device with no network. The app works fully offline.</p>
+      </div>
+      <div class="priv" data-reveal>
+        <h3>A memoryless backend, if you opt in</h3>
+        <p>Turn on “AI analysis” and only the recognised <em>text</em> of <strong>one document at a time</strong> is sent for a better name, summary and graph fragment. No account, no database — each request is handled on its own, not stored, and never used to train models. It keeps only brief, content-free logs — a random per-install ID, which feature ran, how much text — to gauge load, and deletes them within about 90 days. The assembled picture of your life is built and kept only on your phone.</p>
+      </div>
+      <div class="priv" data-reveal>
+        <h3>No account, no trackers</h3>
+        <p>No sign-in, no advertising, no third-party trackers, no cross-app tracking. Photo Notes is the one feature that sends an image (to be transcribed), and it's off until you turn it on.</p>
+      </div>
+      <div class="priv" data-reveal>
+        <h3>You hold the data — and the delete key</h3>
+        <p>Export everything as one zip — every PDF in its folders, the LifeGraph as JSON, a readable summary — and keep your own copy. Or erase everything on the device in a couple of taps: documents, history, LifeGraph, to-dos. Files you synced to iCloud Drive or Google Drive stay where you put them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div data-reveal>
+      <span class="eyebrow center">How it works</span>
+      <h2>Three steps</h2>
+    </div>
+    <ol class="steps">
+      <li data-reveal><span class="step-n">1</span><h3>Capture</h3><p>Scan, import a PDF, snap a whiteboard, or type a note.</p></li>
+      <li data-reveal><span class="step-n">2</span><h3>Review</h3><p>Check the proposed name and summary. Adjust anything. Save.</p></li>
+      <li data-reveal><span class="step-n">3</span><h3>Forget about it</h3><p>It's filed, searchable, and folded into your LifeGraph, Dashboard and Ask.</p></li>
+    </ol>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div data-reveal><span class="eyebrow center">FAQ</span><h2>Questions</h2></div>
+
+    <details data-reveal>
+      <summary>Does anything leave my phone?</summary>
+      <p>Not by default. Scanning, OCR, naming, filing and the LifeGraph all run on-device. If you switch on “AI analysis” in Settings, the recognised <em>text</em> of a document — one at a time, never the page images — is sent to the analysis service for a better name, summary and graph fragment. Photo Notes is the exception: it sends the photo you take, and it's off until you enable it.</p>
+    </details>
+
+    <details data-reveal>
+      <summary>Does the AI service remember my documents?</summary>
+      <p>No. It has no accounts and no database. Each request is handled on its own and isn't stored, and the text isn't used to train models. The only thing it keeps is a brief, content-free load log — a random per-install ID, which feature ran and how much text — deleted within about 90 days. It processes your documents in isolation, and never sees the merged picture of your life, which is assembled and kept only on your iPhone.</p>
+    </details>
+
+    <details data-reveal>
+      <summary>What languages does it handle?</summary>
+      <p>On-device text recognition covers English and German. With AI analysis on, documents in essentially any language are understood, and you can have summaries in English, German, or “match the document”.</p>
+    </details>
+
+    <details data-reveal>
+      <summary>What's the “country” setting for?</summary>
+      <p>It tells the analysis and the Ask experts which country's rules, forms, authorities and deadlines apply to you — so a tax or housing question gets the right answer for where you live, not a generic one. It defaults to your device region.</p>
+    </details>
+
+    <details data-reveal>
+      <summary>Where are my files stored?</summary>
+      <p>In the app's own folder in the Files app by default — you can browse the whole <code>Area / Subject</code> tree there. Point it at a folder inside iCloud Drive or Google Drive and finished PDFs are copied there automatically, using the system file provider (no extra sign-in in the app).</p>
+    </details>
+
+    <details data-reveal>
+      <summary>Can I get my data out?</summary>
+      <p>Yes — “Export everything” in Settings builds a single zip on your device: every PDF in its <code>Area / Subject</code> folders, your LifeGraph as a JSON file, and a plain-text summary of every document and to-do. Save it to Files, AirDrop it, or mail it to yourself.</p>
+    </details>
+
+    <details data-reveal>
+      <summary>Is it on the App Store yet?</summary>
+      <p>Yes — <a href="https://apps.apple.com/app/id6806212898">it's free on the App&nbsp;Store</a>.</p>
+    </details>
+  </section>
+
+  <section class="closing">
+    <div data-reveal>
+      <h2>Scan it once.<br>Never file it again.</h2>
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6806212898">Get it on the App&nbsp;Store</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <img src="assets/icon.png" alt="" width="26" height="26">
+      <span>Cabinet Scan</span>
+    </div>
+    <nav class="foot-links">
+      <a href="https://orgmeguru.github.io/cabinet-scan-legal/privacy.html">Privacy</a>
+      <a href="https://orgmeguru.github.io/cabinet-scan-legal/support.html">Support</a>
+      <a href="mailto:vsr.veera@gmail.com">Contact</a>
+    </nav>
+    <p class="foot-note">© 2026 Cabinet Scan. Made for iPhone. Not affiliated with Apple or Google.</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
