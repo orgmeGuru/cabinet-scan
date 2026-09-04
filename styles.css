@@ -1,6 +1,16 @@
 /* Cabinet Scan — landing page
    Palette from the app icon: indigo-blue gradient, amber accent, white paper. */
 
+/* Self-hosted so no request ever leaves this origin (no Google Fonts / third
+   party). Space Grotesk is a variable font; one file covers weights 300–700. */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("assets/fonts/space-grotesk-latin.woff2") format("woff2");
+}
+
 :root {
   --blue-400: #7d95ec;
   --blue-500: #5b78e0;
